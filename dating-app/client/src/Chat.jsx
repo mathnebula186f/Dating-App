@@ -247,6 +247,19 @@ export default function Chat() {
     handleNegoNeedFinal,
   ]);
 
+  const [acceptedPeople, setAcceptedPeople] = useState([]);
+  useEffect(() => {
+    axios
+      .get("./userChats/"+id)
+      .then(function (response) {
+        // console.log(response.data);
+        setAcceptedPeople(response.data);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  }, []);
+
   return (
     <div className="flex h-screen">
       {RoomPageOpened && (
