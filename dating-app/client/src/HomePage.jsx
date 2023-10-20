@@ -2,6 +2,7 @@ import { useState } from "react";
 import Navbar from "./Navbar";
 import Chat from "./Chat";
 import Profile from "./Profile";
+import SlidingImages from "./SlidingImages"
 
 export default function Homepage() {
   const [show, setShow] = useState(0);
@@ -11,9 +12,8 @@ export default function Homepage() {
       {show === 0 && (
         <>
           <div>HOMEPAGE</div>
-          <div className="bottom-0 w-full">
-            <Chat />
-          </div>
+          <SlidingImages />
+          <Chat />
         </>
       )}
       {show === 1 && <Profile />}
