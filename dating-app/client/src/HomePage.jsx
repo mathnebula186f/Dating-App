@@ -11,7 +11,7 @@ import { useSocket } from "./SocketProvider";
 import peer from "./peer";
 import ReactPlayer from 'react-player';
 
-export default function Chat() {
+export default function HomePage() {
   const[ws,setWs]=useState(null);
   const [onlinePeople,setOnlinePeople]=useState({});
   const [selectedUserId,setSelectedUserId]=useState(null);

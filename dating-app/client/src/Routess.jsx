@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import RegisterAndLoginForm from "./RegisterAndLoginForm";
 import { UserContext } from "./UserContext";
-import Chat from "./Chat";
-import {Routes ,Route} from 'react-router-dom';
+import HomePage from "./HomePage";
+import { BrowserRouter,Routes, Route } from "react-router-dom";
 //console.log("hi3afs");
 export default function Routess() {
     // console.log("hi35");
@@ -10,7 +10,10 @@ export default function Routess() {
     
     if(username){
         //console.log("hehehe");
-        return <Chat />; 
+        return (
+        <HomePage/>
+        
+        ); 
     }
 
     return(
