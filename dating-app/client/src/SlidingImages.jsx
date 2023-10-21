@@ -9,7 +9,7 @@ export default function SlidingImages() {
 
   function handleRequest(recieverId) {
     // Add to requested user.requested[]
-    console.log("Button clicked with reciever=", recieverId);
+    //console.log("Button clicked with reciever=", recieverId);
     axios
       .post("/sendRequest", [id, recieverId])
       .then(function (response) {
@@ -26,7 +26,7 @@ export default function SlidingImages() {
     axios
       .get("./usersData")
       .then(function (response) {
-        console.log(response.data);
+        //console.log(response.data);
         setAllUsers(response.data);
       })
       .catch(function (error) {

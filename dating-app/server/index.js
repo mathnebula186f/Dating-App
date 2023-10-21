@@ -91,12 +91,17 @@ app.post("/login", async (req, res) => {
 });
 
 app.post("/register", async (req, res) => {
-  const { username, password } = req.body;
-  console.log("username=");
+  const { username, password, name, age, gender, imgUrl, about } = req.body;
+  console.log("username=",username);
   const hashedPassword = bcrypt.hashSync(password, bcryptSalt);
   const createdUser = await User.create({
     username: username,
     password: hashedPassword,
+    name:name,
+    age:age,
+    gender:gender,
+    imgUrl:imgUrl,
+    about:about,
   });
 
   jwt.sign(
@@ -160,8 +165,49 @@ app.post("/sendRequest", async (req, res) => {
   res.status(200).json({ message: "Data received successfully" });
 });
 
+app.post("/AcceptRequest", async (req, res) => {
+  const [myId, tobeAccepted] = req.body; // Access the posted data from the request body
+  // Handle the received data (e.g., save it to a database)
+  console.log("Recepient id:", tobeAcceptedId);
+    
+  try {
+    const updatedEntry = await User.findByIdAndUpdate(
+      tobeAccepted,
+      { $push: { accepted: myId } },
+      { new: true }
+    );
+
+    if (updatedEntry) {
+      console.log("Updated entry:", updatedEntry);
+    } else {
+      console.log("Entry not found");
+    }
+  } catch (error) {
+    console.error("Error updating entry:", error);
+  }
+
+  try {
+    const updatedEntry1 = await User.findByIdAndUpdate(
+      myId,
+      { $pull: { requested: tobeAccepted } },
+      { new: true }
+    ); 
+
+    if (updatedEntry1) {
+      console.log("Updated entry:", updatedEntry1);
+    } else {
+      console.log("Entry not found");
+    }
+  } catch (error) {
+    console.error("Error updating entry:", error);
+  }
+  console.log("All done!"); 
+  // Respond with a success message
+  res.status(200).json({ message: "Data received successfully" });
+}); 
+
 app.get("/fetchRequests", async (req, res) => {
-    const id = req.body;
+    const {id} = req.body;
     const requestData = await User.findById(id);
     if (requestData) {
       res.json(requestData.requested);

@@ -3,6 +3,7 @@ import Navbar from "./Navbar";
 import Chat from "./Chat";
 import Profile from "./Profile";
 import SlidingImages from "./SlidingImages"
+import RequestSection from "./RequestSection";
 
 export default function Homepage() {
   const [show, setShow] = useState(0);
@@ -13,6 +14,7 @@ export default function Homepage() {
         <>
           <div>HOMEPAGE</div>
           <SlidingImages />
+          <RequestSection/>
           <Chat />
         </>
       )}
