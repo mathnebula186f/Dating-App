@@ -12,10 +12,11 @@ export default function Homepage() {
       <Navbar setShow={setShow} />
       {show === 0 && (
         <>
-          <div>HOMEPAGE</div>
+          {/* <div>HOMEPAGE</div> */}
           <SlidingImages />
           <RequestSection/>
           <Chat />
+
         </>
       )}
       {show === 1 && <Profile />}
