@@ -13,6 +13,7 @@ const UserSchema= new mongoose.Schema({
     accepted : [{
         type:String
     }],
+    imgUrl: String
 },{timestamps:true});
 
 const UserModel= mongoose.model("User",UserSchema);
